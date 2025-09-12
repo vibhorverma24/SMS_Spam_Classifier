@@ -4,8 +4,15 @@ import string
 from nltk.corpus import stopwords
 import nltk
 from nltk.stem.porter import PorterStemmer
-nltk.download('punkt', quiet=True)
-nltk.download('stopwords', quiet=True)
+nltk_data_dir = os.path.join(os.getcwd(), "nltk_data")
+os.makedirs(nltk_data_dir, exist_ok=True)
+
+# Download required NLTK resources to this local folder
+nltk.download('punkt', download_dir=nltk_data_dir)
+nltk.download('stopwords', download_dir=nltk_data_dir)
+
+# Tell NLTK to use this folder
+nltk.data.path.append(nltk_data_dir)
 ps = PorterStemmer()
 
 def transform_text(text):
